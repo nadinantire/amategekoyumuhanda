@@ -1,0 +1,56 @@
+#Turn Rewrite Engine On
+RewriteEngine On
+
+# Rewrite for Admin script
+RewriteRule ^admin/login$ admin/admin_login.php [NC,L]
+RewriteRule ^admin/signup$ admin/admin_signup.php [NC,L]
+RewriteRule ^admin/$ admin/admin_home.php [NC,L]
+RewriteRule ^admin$ admin/admin_home.php [NC,L]
+RewriteRule ^admin/settings$ admin/admin_settings.php [NC,L]
+RewriteRule ^admin/transactions$ admin/admin_transactions.php [NC,L]
+RewriteRule ^admin/instructors/new$ admin/admin_instructor_new.php [NC,L]
+RewriteRule ^admin/instructor/edit/(.*)$ ./admin/admin_instructor_edit.php?instructor=$1
+RewriteRule ^admin/instructor/delete/(.*)$ ./admin/admin_instructor_delete.php?instructor=$1
+RewriteRule ^admin/faq/new$ admin/admin_faq_new.php [NC,L]
+RewriteRule ^admin/faq/delete/(.*)$ ./admin/Operations.php?faq=$1
+
+# Rewrite for Instructor
+RewriteRule ^instructor$ instructor/admin_home.php [NC,L]
+RewriteRule ^instructor/$ instructor/admin_home.php [NC,L]
+RewriteRule ^instructor/courses$ instructor/admin_courses.php [NC,L]
+RewriteRule ^instructor/courses/new$ instructor/admin_courses_new.php [NC,L]
+RewriteRule ^instructor/courses/(.*)/edit/$ ./instructor/admin_courses_edit.php?course=$1
+
+RewriteRule ^instructor/courses/(.*)/quiz$ ./instructor/admin_quiz.php?course=$1
+RewriteRule ^instructor/courses/(.*)/quiz/add$ ./instructor/admin_quiz_add.php?course=$1
+RewriteRule ^instructor/courses/quiz/(.*)/(.*)$ ./instructor/admin_questions.php?quiz=$1&total=$2
+RewriteRule ^instructor/quiz/save/(.*)/(.*)/$ ./instructor/admin_save_questions.php?quiz=$1&total=$2
+RewriteRule ^instructor/quiz/delete/(.*)/$ ./instructor/admin_save_questions.php?quizID=$1
+
+# Rewrite for Student
+RewriteRule ^student$ student/admin_home.php [NC,L]
+RewriteRule ^student/$ student/admin_home.php [NC,L]
+RewriteRule ^student/quiz/(.*)/(.*)/(.*)$ ./student/admin_quiz.php?quiz=$1&n=$2&total=$3
+RewriteRule ^student/retake/(.*)/(.*)/(.*)/(.*)/$ ./student/Operations.php?quiz=$1&n=$2&total=$3&q=$4
+RewriteRule ^student/save/(.*)/(.*)/(.*)/(.*)$ ./student/Operations.php?quiz=$1&n=$2&total=$3&questionID=$4
+RewriteRule ^student/results/(.*)$ ./student/admin_quiz_results.php?quiz=$1
+RewriteRule ^student/correct/(.*)$ ./student/admin_correct_answers.php?quiz=$1
+
+# Rewrite for Front
+RewriteRule ^$ public/index.php [NC,L]
+RewriteRule ^login$ public/front_login.php [NC,L]
+RewriteRule ^register$ public/front_register.php [NC,L]
+RewriteRule ^test$ test.php [NC,L]
+RewriteRule ^about/$ public/about.php [NC,L]
+RewriteRule ^faq/$ public/front_faq.php [NC,L]
+RewriteRule ^contact/$ public/contact_us.php [NC,L]
+RewriteRule ^article/$ public/single-article.php [NC,L]
+RewriteRule ^list/$ public/listArticles.php [NC,L]
+RewriteRule ^404page$ ./front_404page.php [NC,L]
+
+
+
+
+# Rewrite for Others
+ErrorDocument 404 https://amategekoyumuhanda.rw/404page
+#ErrorDocument 404 http://localhost/befa/404page
